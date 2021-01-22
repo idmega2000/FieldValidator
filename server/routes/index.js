@@ -1,13 +1,8 @@
+import HomeController from 'controller/HomeController';
 import { Router } from 'express';
 
-// v1 Routes
-import v1Router from './api/v1';
+const routes = Router();
 
-const router = Router();
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Dispute resolution system' });
-});
-router.use(v1Router);
+routes.get('/', HomeController.viewHome);
 
-export default router;
+export default routes;

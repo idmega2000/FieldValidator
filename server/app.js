@@ -1,24 +1,19 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable func-names */
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import http from 'http';
-import socketIO from 'socket.io';
 import * as Sentry from '@sentry/node';
+import routes from 'routes';
 import envData from './configs/envData';
-import v1Routes from './routes/api/v1';
+import ServerResponse from 'helpers/ServerResponse';
+import RESPONSE_MESSAGES from 'constants/responseMessages';
 
-dotenv.config();
 
 Sentry.init({
   dsn: envData.SENTRY_DSN,
-  environment: envData.NODE_ENV === 'production' ? 'production' : 'development'
+  environment: envData.NODE_ENV
 });
 
 const app = express();
-export const socketServer = http.createServer(app);
 
 app.use(Sentry.Handlers.requestHandler());
 
@@ -38,30 +33,22 @@ app.use(express.json({
   limit: envData.MAX_FILE_SIZE || '5mb',
 }));
 
-app.use(v1Routes);
+app.use(routes);
 
 app.use(Sentry.Handlers.errorHandler());
 
-// / catch 404 and forward to error handler
+// / catch 404 and return the error message
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-/* eslint-disable-next-line */
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(err.status || 500).json({
-
-    errors: {
-      message: err,
-    },
-  });
+   ServerResponse.notFound(res, RESPONSE_MESSAGES.NOT_FOUND )
 });
 
-export const io = socketIO(socketServer);
-io.origins('*:*');
+// Handle error thrown or not handled by app
+app.use((error, req, res, next) => {
+  // log the error if log is available using the err
+  // Also find way to display the error in console when on dev
+  ServerResponse.serverError(res)
+});
 
 /* eslint-disable-next-line */
-socketServer.listen(envData.PORT, () => console.log(`App Listening on port ${envData.PORT}`));
+app.listen(envData.PORT, () => console.log(`App Listening on port ${envData.PORT}`));
 export default app;

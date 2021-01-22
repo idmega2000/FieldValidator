@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-starter-template",
+  "name": "field-validator",
   "version": "1.0.0",
-  "description": "simple node js starter template",
+  "description": "simple node js field validator",
   "main": "server/app.js",
   "scripts": {
     "start": " && npm run build && npm run serve",
@@ -12,26 +12,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ikelani421/Nodejs-Starter-Template.git"
+    "url": "git+https://github.com/idmega2000/FieldValidator.git"
   },
-  "author": "ikelani@nibss-plc.com.ng",
+  "author": "idmega2000@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ikelani421/Nodejs-Starter-Template/issues"
+    "url": "https://github.com/idmega2000/FieldValidator/issues"
   },
-  "homepage": "https://github.com/ikelani421/Nodejs-Starter-Template#readme",
+  "homepage": "https://github.com/idmega2000/FieldValidator#readme",
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/node": "^7.7.7",
     "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
-    "babel-preset-env": "^1.7.0",
     "nodemon": "^2.0.2",
     "swagger-jsdoc": "^3.5.0",
     "swagger-ui-express": "^4.1.3"

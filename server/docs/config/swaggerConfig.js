@@ -6,11 +6,11 @@ dotenv.config();
 const { PORT } = envData;
 const swaggerDefinition = {
   info: {
-    title: 'Project title',
+    title: 'Field Validation',
     version: '1.0.0',
-    description: 'description',
+    description: 'a simple project to validate field',
     contact: {
-      name: 'Approval Workflow Backend',
+      name: 'Idris Kelani',
       url: ''
     }
   },

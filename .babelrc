@@ -6,7 +6,9 @@
         }
       }]
     ],
-    "plugins": [
-        "@babel/plugin-proposal-object-rest-spread"
+      "plugins": [
+        ["module-resolver", {
+          "root": ["./server"]
+        }]
       ]
   }
