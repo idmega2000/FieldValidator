@@ -1,24 +1,19 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable func-names */
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import http from 'http';
-import socketIO from 'socket.io';
 import * as Sentry from '@sentry/node';
+import v1Routes from 'routes';
 import envData from './configs/envData';
-import v1Routes from './routes/api/v1';
 
 dotenv.config();
 
 Sentry.init({
   dsn: envData.SENTRY_DSN,
-  environment: envData.NODE_ENV === 'production' ? 'production' : 'development'
+  environment: envData.NODE_ENV
 });
 
 const app = express();
-export const socketServer = http.createServer(app);
 
 app.use(Sentry.Handlers.requestHandler());
 
@@ -59,9 +54,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-export const io = socketIO(socketServer);
-io.origins('*:*');
-
 /* eslint-disable-next-line */
-socketServer.listen(envData.PORT, () => console.log(`App Listening on port ${envData.PORT}`));
+app.listen(envData.PORT, () => console.log(`App Listening on port ${envData.PORT}`));
 export default app;

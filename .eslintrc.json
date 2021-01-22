@@ -56,6 +56,13 @@
           "requireReturnDescription": true
         }
       ]
-    }
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": ["server"]
+        }
+      },
+    },
   }
   
