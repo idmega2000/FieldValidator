@@ -19,7 +19,7 @@ class HomeController {
     try {
       const ownerData = await getOwnerInfo();
 
-      return ServerResponse.SuccessResponse(res, RESPONSE_MESSAGES.HOME_SUCCESS, ownerData);
+      return ServerResponse.successResponse(res, RESPONSE_MESSAGES.HOME_SUCCESS, ownerData);
     } catch (error) {
       return next(error);
     }
