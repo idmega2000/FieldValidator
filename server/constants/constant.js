@@ -6,6 +6,4 @@ export const CONDITION_TYPE = {
   contains: ['string']
 };
 
-export const REQUIRED_RULE_FIELD = ['field', 'condition', 'condition_value'];
-
 export const REQUIRED_CONDITION = ['gte', 'gt', 'eq', 'neq', 'contains'];

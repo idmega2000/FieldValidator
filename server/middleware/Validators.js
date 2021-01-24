@@ -9,7 +9,7 @@ import generalHelper from 'helpers/generalHelper';
 */
 class Validators {
   /**
-     * @description validate condition type mainly for nexted object
+     * @description validate condition type mainly for nested data
      * @param {object} req - Request sent to the route
      * @param {object} res - Response sent from the controller
      * @param {object} next - Error handler

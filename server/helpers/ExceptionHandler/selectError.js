@@ -17,6 +17,7 @@ const selectError = (res, error) => {
     break;
 
   case ('SyntaxError'):
+    // handle invalid json
     errorToDisplay = 'badRequest';
     message = RESPONSE_MESSAGES.INVALID_JSON;
     break;
