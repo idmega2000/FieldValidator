@@ -1,4 +1,4 @@
-import RESPONSE_MESSAGES from "constants/responseMessages";
+import RESPONSE_MESSAGES from 'constants/responseMessages';
 
 /**
 * @description class will implement functionalities for all server responses
@@ -25,7 +25,7 @@ class ServerResponse {
   }
 
   /**
-   * @description - for not found 
+   * @description - for not found
    * @param {object} res the response object
    * @param {string} message The message to the client
    * @param {Number} statusCode the status code to be sent to user
@@ -41,35 +41,36 @@ class ServerResponse {
       data,
     });
   }
+
   /**
    * @description - for bad request
    * @param {object} res the response object
    * @param {string} message The message to the client
-   * @param {Number} statusCode the status code to be sent to user
    * @param {object} data the data to from the activity
+   * @param {Number} statusCode the status code to be sent to user
    * @param {String} status the status of the event
    * @returns {object} returns response object with the necessary info
    */
-  static badRequest(res, message, data = null,
+  static badRequest(res, message, data = null, statusCode = 400,
     status = 'error') {
-    res.status(400).json({
+    return res.status(statusCode).json({
       message,
       status,
       data,
     });
   }
+
   /**
    * @description - for internal server error
    * @param {object} res the response object
    * @param {string} message The message to the client
-   * @param {Number} statusCode the status code to be sent to user
    * @param {object} data the data to from the activity
    * @param {String} status the status of the event
    * @returns {object} returns response object with the necessary info
    */
-  static serverError(res, message=RESPONSE_MESSAGES.SOMETHING_WENT_WRONT, data = null,
+  static serverError(res, message = RESPONSE_MESSAGES.SOMETHING_WENT_WRONT, data = null,
     status = 'error') {
-    res.status(500).json({
+    return res.status(500).json({
       message,
       status,
       data,

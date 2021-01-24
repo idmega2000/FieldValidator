@@ -1,0 +1,4 @@
+  PORT=9700
+  SENTRY_DSN=development
+  NODE_ENV='development
+  MAX_FILE_SIZE=20mb
