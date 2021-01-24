@@ -48,6 +48,7 @@ const apiHelper = {
     let message = null;
     let trackFieldName = 'data';
 
+    // look into making this even better
     // the idea is to move nested as the loop is happening
     // while also validating the nested data
     // loop through the array of all levels
@@ -55,17 +56,18 @@ const apiHelper = {
       trackFieldData = trackFieldData[item] || false;
       trackFieldName = `${trackFieldName}.${item}`;
 
-      // check if first is an object if nested data
-      if (index === 0
-        && allLevel.length !== 0
-         && !valueIsObject(trackFieldData)) {
-        message = `${trackFieldName} should be an object.`;
-        // break the loop and display error msg
-        return true;
-      }
       // check if the data exist and return if it does not
       if (!trackFieldData) {
         message = `${trackFieldName} is required.`;
+        // break the loop and display error msg
+        return true;
+      }
+
+      // check if first is an object if nested data
+      if (index === 0
+        && (allLevel.length - 1) !== 0
+         && !valueIsObject(trackFieldData)) {
+        message = `${trackFieldName} should be an object.`;
         // break the loop and display error msg
         return true;
       }
