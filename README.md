@@ -1,12 +1,13 @@
 # Field-Validator
-A simple node js field validation project
+A simple node js field validation project.
 
 # Notes
 
-The app uses absolute imports
-The app also uses global exception method of error handling.
+- The app uses absolute imports.
+- The app also uses global exception error handling.
+- All logic exceptions are thrown in service files(good practive for easy maintanance).
 
-### Setup Project
+# Setup Project
 To setup project
 - clone project and cd into the folder
 - run npm install
