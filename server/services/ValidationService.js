@@ -1,5 +1,5 @@
 import generalHelper from 'helpers/generalHelper';
-import ValidationError from 'helpers/ExceptionHandler/ExceptionError';
+import ExceptionError from 'helpers/ExceptionHandler/ExceptionError';
 import apiHelpers from 'helpers/apiHelpers';
 
 const {
@@ -71,11 +71,11 @@ class ValidationService {
       // check if more than two nested
       if (allLevel.length > 3) {
         message = `${field} should not be more than two levels`;
-        throw new ValidationError(message);
+        throw new ExceptionError(message);
       }
       const generatedData = generateDataFieldValue(allLevel, data, field);
       if (generatedData.message) {
-        throw new ValidationError(generatedData.message);
+        throw new ExceptionError(generatedData.message);
       }
       fieldDataDetails = generatedData;
     }
@@ -94,12 +94,12 @@ class ValidationService {
     };
     if (!valueIsInt(field)) {
       const errorMessage = 'field shoulb be a valid number string.';
-      throw new ValidationError(errorMessage);
+      throw new ExceptionError(errorMessage);
     }
 
     if (!data[valueToInt(field)]) {
       const errorMessage = `field ${field} is missing from data.`;
-      throw new ValidationError(errorMessage);
+      throw new ExceptionError(errorMessage);
     }
 
     fieldDataDetails.fieldData = data[Number(field)];
@@ -124,7 +124,7 @@ class ValidationService {
       field, dataFieldValue, condition, condition_value);
     if (!success) {
       const message = `field ${field} failed validation.`;
-      throw new ValidationError(message, validationData);
+      throw new ExceptionError(message, validationData);
     }
     return validationData;
   }
